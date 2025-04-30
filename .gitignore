@@ -136,6 +136,9 @@ dist
 .pnp.*
 
 
+__pycache__/
+
+
 # Logs
 logs
 *.log
