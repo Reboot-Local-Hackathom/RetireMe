@@ -3,11 +3,10 @@ import Heroes from './Heroes';
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <h2> Tedtdfdkfjdfhk</h2>
+    <div className="w-full">
       <Heroes
-        title="..."
-        subtitle="....."
+        title="Plan Your Financial Future"
+        subtitle="Take control of your retirement planning with our comprehensive financial management tools"
       />
     </div>
   );

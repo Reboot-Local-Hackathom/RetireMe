@@ -1,9 +1,8 @@
-// src/components/Heroes.jsx
 import React from 'react';
 
 const Heroes = ({ title, subtitle }) => {
   return (
-    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center text-white text-center bg-black">
+    <div className="relative w-full min-h-screen overflow-hidden bg-black pt-16">
       {/* Background video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
@@ -16,17 +15,19 @@ const Heroes = ({ title, subtitle }) => {
         Your browser does not support the video tag.
       </video>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+      {/* Overlay (optional for darkening) */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
 
-      {/* Text content */}
-      <div className="relative z-20 max-w-3xl px-4">
-        <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-wide leading-tight bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          {title}
-        </h1>
-        <p className="text-xl md:text-2xl font-light mt-6">
-          {subtitle}
-        </p>
+      {/* Foreground content */}
+      <div className="relative z-20 flex items-center justify-center w-full h-full text-white text-center">
+        <div className="max-w-3xl px-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-wide leading-tight bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            {title}
+          </h1>
+          <p className="text-xl md:text-2xl font-light mt-6">
+            {subtitle}
+          </p>
+        </div>
       </div>
     </div>
   );
