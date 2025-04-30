@@ -10,13 +10,6 @@ import uuid
 from app.env_settings import get_settings
 from app.helpers.hashing_helper import hash_string_bcrypt
 
-# from mongoengine.connection import connect
-# Connect to MongoDB (configure database connection as necessary)
-# connect('mydatabase')  # Adjust the connection URI if needed
-
-# MongoEngine Document for sApiCustomer
-
-
 class sAccount(Document):
     # Unique constraint on contact_email
     contact_email = StringField(required=True, unique=True)

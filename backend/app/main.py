@@ -7,6 +7,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 import app.routes.account_routes as account_routes
+import app.routes.transaction_routes as transaction_routes
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -40,6 +41,7 @@ from . import config
 
 
 app.include_router(account_routes.router)
+app.include_router(transaction_routes.router)
 
 @app.get("/")
 async def root():
