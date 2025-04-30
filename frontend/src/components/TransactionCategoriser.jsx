@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 export default function TransactionCategoriser() {
   const sampleCSVData = `
-Date,Description,Amount
-2023-01-01,Grocery Store, -55.20
-2023-01-02,Online Subscription, -12.99
-2023-01-03,Paycheck, 1500.00
-2023-01-04,Coffee Shop, -4.50
-2023-01-05,Restaurant, -35.75
+Date,Payee,Reference,Amount
+2025-03-01,OVO ENERGY,OVO ENERGY,-75.50
+2025-03-01,RENT - LANDLORD SMITH,RENT - LANDLORD SMITH,-850.00
+2025-03-03,TESCO STORES BRISTOL,TESCO STORES BRISTOL,-65.20
+2025-03-05,BRISTOL COUNCIL TAX,BRISTOL COUNCIL TAX,-120.00
+2025-03-07,AMAZON UK MARKETPLACE,AMAZON UK MARKETPLACE,-29.99
+2025-03-10,COSTA COFFEE 1234 BRISTOL,COSTA COFFEE 1234 BRISTOL,-3.10
 `;
 
   const categories = [
-    'Rent',
     'Groceries',
     'Subscriptions',
     'Income',
@@ -30,8 +30,8 @@ Date,Description,Amount
     const lines = sampleCSVData.trim().split('\n');
     const [, ...dataLines] = lines;
     const parsed = dataLines.map(line => {
-      const [Date, Description, Amount] = line.split(',').map(s => s.trim());
-      return { Date, Description, Amount: parseFloat(Amount), category: null };
+      const [Date, Payee, Reference, Amount] = line.split(',').map(s => s.trim());
+      return { Date, Payee, Reference, Amount: parseFloat(Amount), category: null };
     });
     setTransactions(parsed);
   }, []);
@@ -49,8 +49,8 @@ Date,Description,Amount
         <ul className="space-y-2">
           {categorised.map((t, i) => (
             <li key={i} className="border rounded-xl p-3">
-              <p><strong>{t.Description}</strong> - {t.Amount.toFixed(2)}</p>
-              <p className="text-sm text-gray-500">{t.Date} | {t.category}</p>
+              <p><strong>{t.Payee}</strong>: {t.Amount.toFixed(2)}</p>
+              <p className="text-sm text-gray-500">{t.Date} | {t.Reference} | {t.category}</p>
             </li>
           ))}
         </ul>
@@ -62,9 +62,12 @@ Date,Description,Amount
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-gray-400 shadow-xl rounded-2xl">
-      <h2 className="text-2xl font-bold mb-4 text-center">Categorise Transaction</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">
+        Categorise Transaction ({currentIndex + 1}/{transactions.length})
+      </h2>
       <div className="mb-6">
-        <p className="text-lg"><strong>{current.Description}</strong></p>
+        <p className="text-lg"><strong>{current.Payee}</strong></p>
+        <p className="text-gray-600">{current.Reference}</p>
         <p className="text-gray-600">{current.Date}</p>
         <p className="text-gray-800 font-semibold">${current.Amount.toFixed(2)}</p>
       </div>
@@ -81,4 +84,4 @@ Date,Description,Amount
       </div>
     </div>
   );
-}
+} 
