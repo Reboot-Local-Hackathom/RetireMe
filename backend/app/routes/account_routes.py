@@ -97,7 +97,7 @@ async def customer_sign_up(signInInfo: pSignInData):
         raise HTTPException(status_code=400, detail="Bad request")
     
 
-@router.post("/accounts/get-info", tags=["getting info"])
+@router.get("/accounts/get-info", tags=["getting info"])
 async def customer_sign_up(request: Request):
 
     try:
