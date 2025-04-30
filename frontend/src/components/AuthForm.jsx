@@ -73,6 +73,10 @@ export default function AuthForm() {
 
       const result = await res.json();
       setMessage(`Success: ${JSON.stringify(result)}`);
+      if (result.access_token) {
+        sessionStorage.setItem('access_token', result.access_token);
+        console.log('Access token set')
+      }
     } catch (err) {
       setMessage(`Error: ${err.message}`);
     } finally {
@@ -226,7 +230,7 @@ export default function AuthForm() {
           {mode === 'sign-up' ? 'Sign In' : 'Sign Up'}
         </button>
       </p>
-      {message && <p className="mt-4 text-center text-sm text-red-600">{message}</p>}
+      {/* {message && <p className="mt-4 text-center text-sm text-red-600">{message}</p>} */}
     </div>
   );
 }
