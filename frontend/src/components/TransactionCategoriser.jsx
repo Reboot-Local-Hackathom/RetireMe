@@ -69,7 +69,7 @@ Date,Payee,Reference,Amount
         <p className="text-lg"><strong>{current.Payee}</strong></p>
         <p className="text-gray-600">{current.Reference}</p>
         <p className="text-gray-600">{current.Date}</p>
-        <p className="text-gray-800 font-semibold">${current.Amount.toFixed(2)}</p>
+        <p className="text-gray-800 font-semibold">£{current.Amount.toFixed(2)}</p>
       </div>
       <div className="grid grid-cols-2 gap-3">
         {categories.map((cat, idx) => (
