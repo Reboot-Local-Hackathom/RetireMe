@@ -47,14 +47,16 @@ export default function TransactionCategoriser() {
     const updated = [...categorised, { ...transactions[currentIndex], category }];
     console.log(transactions[currentIndex].transaction_id);
     console.log(category);
+    const token = sessionStorage.getItem('access_token');
     const response = fetch('http://localhost:8000/transactions/update-category', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // Add this line
+        'Content-Type': 'application/json',
+        'x-access-token': token
       },
       body: JSON.stringify({
-        'transaction_id': transactions[currentIndex].transaction_id,
-        'new_category': category
+        'transaction_id': transactions[currentIndex].transaction_id.toString(),
+        'new_category': category.toString()
       })
     });
     console.log(response);
