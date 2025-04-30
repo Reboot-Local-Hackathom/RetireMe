@@ -1,10 +1,10 @@
 // src/pages/TransactionPage.jsx
-import TransactionCategoriser from './TransactionCategoriser.jsx';
+import AuthForm from './AuthForm.jsx';
 
 export default function TransactionPage() {
   return (
     <div>
-      <TransactionCategoriser />
+      <AuthForm />
     </div>
   );
 }
