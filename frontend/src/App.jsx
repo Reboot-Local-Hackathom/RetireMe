@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Heroes from './components/Heroes';
-
-function App() {
-  return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
-  );
-}
-
-=======
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import TransactionPage from './components/TransactionPage';
@@ -58,5 +39,4 @@ function App() {
   );
 }
 
->>>>>>> d43f5347f0421c46d09e84754d1b29b625545c91
 export default App;
