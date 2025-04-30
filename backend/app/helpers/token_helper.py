@@ -61,15 +61,15 @@ async def verify_access_token(token):
         # if this is a key-error, we'll throw here and catch in in the except below
         account_fid = payload["account_id"]
 
-        customer_doc = await find_account_doc_by_account_id(account_fid)
+        accont_doc = await find_account_doc_by_account_id(account_fid)
 
-        if not customer_doc:
+        if not accont_doc:
             raise Exception("Cannot find customer")
 
-        assert payload["token_number"] == customer_doc["token_number"]
+        assert payload["token_number"] == accont_doc["token_number"]
 
         # If no error, the token was decoded okay with signature verified
-        return ({"status": True, "message": "OK", "customer_doc": customer_doc})
+        return ({"status": True, "message": "OK", "account_doc": accont_doc})
     except jwt.ExpiredSignatureError:
         return ({"status": False, "message": "expired"})
     except jwt.InvalidTokenError:
