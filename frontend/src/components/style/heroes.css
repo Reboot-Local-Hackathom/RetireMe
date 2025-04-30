@@ -1,0 +1,231 @@
+.hero-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    background-color: #000;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)); /* Reduced opacity for subtle shading */
+    z-index: 1;
+  }
+  
+  .heroes-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .text-on-media {
+    position: relative;
+    z-index: 2;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  .hero-title {
+    font-size: 3rem; /* Reduced font size */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: linear-gradient(45deg, #3490dc, #6574cd, #9561e2, #f66d9b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+  }
+  
+  .word-animation {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+  
+  .word-animation:nth-child(1) { animation-delay: 0.1s; }
+  .word-animation:nth-child(2) { animation-delay: 0.2s; }
+  .word-animation:nth-child(3) { animation-delay: 0.3s; }
+  .word-animation:nth-child(4) { animation-delay: 0.4s; }
+  .word-animation:nth-child(5) { animation-delay: 0.5s; }
+  .word-animation:nth-child(6) { animation-delay: 0.6s; }
+  .word-animation:nth-child(7) { animation-delay: 0.7s; }
+  .word-animation:nth-child(8) { animation-delay: 0.8s; }
+  
+  .hero-subtitle {
+    font-size: 1.5rem; /* Slightly reduced font size */
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards 0.9s;
+  }
+  
+  .demo-call-container {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards 1.1s;
+  }
+  
+  .demo-call-button {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(45deg, #3490dc, #6574cd);
+    color: #fff;
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .demo-call-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .demo-call-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button-text {
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  
+  .button-icon {
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.5em;
+    transition: all 0.3s ease;
+  }
+  
+  .demo-call-button:hover .button-icon {
+    transform: translateX(5px);
+  }
+  
+  .demo-call-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #6574cd, #3490dc);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .demo-call-button:hover::after {
+    opacity: 1;
+  }
+  
+  .animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .blob {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 10s infinite;
+  }
+  
+  .blob-1 {
+    width: 300px;
+    height: 300px;
+    left: -150px;
+    top: -150px;
+  }
+  
+  .blob-2 {
+    width: 200px;
+    height: 200px;
+    right: -100px;
+    bottom: -100px;
+    animation-delay: -3s;
+  }
+  
+  .blob-3 {
+    width: 150px;
+    height: 150px;
+    right: 30%;
+    top: 30%;
+    animation-delay: -6s;
+  }
+  
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -50px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .italic-text {
+    font-style: italic;
+  }
+  
+  /* Style for positioning the chatbot at the bottom left */
+  #chatbase-widget {
+    position: fixed;
+    bottom: 20px;  /* Distance from the bottom */
+    left: 20px;    /* Distance from the left */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  /* Class for vertical positioning adjustment */
+  .adjusted-position {
+    transform: translateY(-20%);
+  }
+  
+  /* Responsive adjustment for smaller screens */
+  @media (max-width: 768px) {
+    .adjusted-position {
+      transform: translateY(-5%);
+    }
+  }
+  
