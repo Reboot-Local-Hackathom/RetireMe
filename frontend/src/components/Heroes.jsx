@@ -21,7 +21,7 @@ const Heroes = ({ title, subtitle }) => {
       {/* Foreground content */}
       <div className="relative z-20 flex items-center justify-center w-full h-full text-white text-center">
         <div className="max-w-3xl px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-wide leading-tight bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-wide leading-tight text-white">
             {title}
           </h1>
           <p className="text-xl md:text-2xl font-light mt-6">
