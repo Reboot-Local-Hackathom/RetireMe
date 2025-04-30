@@ -14,14 +14,14 @@ from .database import connect_db
 
 # CORS settings: allow frontend origin (adjust the origin if different)
 origins = [
-    "http://localhost:6000",  # For local dev with React on localhost:6000
+    "http://localhost:5173",  # For local dev with React on localhost:6000
     # Add other origins if necessary
 ]
 
 # Add CORSMiddleware to allow CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # List of allowed origins
+    allow_origins=["*"],  # List of allowed origins
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers

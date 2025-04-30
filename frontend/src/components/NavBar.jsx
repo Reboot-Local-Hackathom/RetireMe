@@ -6,6 +6,7 @@ const NavBar = () => {
   const categories = [
     { name: 'Home', path: '/' },
     { name: 'Transactions', path: '/transactions' },
+    { name: 'Sign Up/In', path: '/auth' },
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'Reports', path: '/reports' },
     { name: 'Settings', path: '/settings' }

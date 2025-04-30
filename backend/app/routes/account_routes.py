@@ -6,7 +6,7 @@ from app.models.pub.account_sign_in_schema import pSignInData
 from app.models.priv.account_model import create_account, find_account_doc_by_email
 
 from app.helpers.login_helper import login_email_password
-from app.helpers.token_helper import issue_jwt_access_token
+from app.helpers.token_helper import issue_jwt_access_token, verify_access_token
 
 # from app.database import get_db
 from app.env_settings import get_settings
@@ -22,7 +22,12 @@ async def account_sign_up(signUpInfo: pSignUpData):
             "last_name": signUpInfo.last_name,
             "contact_email": signUpInfo.email_addr,
             # We know this is either 'person' or 'organisation' as validated by pydantic
-            "plain_password": signUpInfo.password
+            "plain_password": signUpInfo.password,
+            "annual_income": signUpInfo.annual_income,
+            "cash_invested": signUpInfo.cash_invested,
+            "perc_contribution": signUpInfo.perc_contribution,
+            "employer_contribution": signUpInfo.employer_contribution,
+            "target_amount": signUpInfo.target_amount
         }
 
         new_account_result = await create_account(acc_data)
@@ -90,4 +95,40 @@ async def customer_sign_up(signInInfo: pSignInData):
     except Exception as e:
         print(e)
         raise HTTPException(status_code=400, detail="Bad request")
+    
+
+@router.post("/accounts/get-info", tags=["getting info"])
+async def customer_sign_up(request: Request):
+
+    try:
+        access_token = request.headers['x-access-token']
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Provide access token")
+    
+    token_result = await verify_access_token(access_token)
+
+    if not token_result['status'] or not token_result['account_doc']:
+        raise HTTPException(status_code=401, detail="bad token")
+    
+    try:
+        account_doc = token_result['account_doc']
+        details = {} 
+        details["annual_income"] = account_doc["annual_income"],
+        details["cash_invested"] = account_doc["cash_invested"],
+        details["perc_contribution"] = account_doc["perc_contribution"],
+        details["employer_contribution"] = account_doc["employer_contribution"],
+        details["target_amount"] = account_doc["target_amount"]
+    
+
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="error fetching details")
+    
+    return({"details": details})
+    
+
+    
+    
+
+
 

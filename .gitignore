@@ -103,6 +103,52 @@ dist
 # vuepress v2.x temp and cache directory
 .temp
 .cache
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Unity Cache directory
+[Cc]ache/
+
+# Unity Asset Store tools
+Assets/AssetStoreTools*
+
+# VSCode specific
+.vscode/
+
+# Rider specific
+.idea/
+*.sln.iml
+
+# Collaborate files
+*.collabignore
+*.collab/
+
+# Serialized files
+*.pidb
+*.csproj
+*.unityproj
+*.sln
+*.user
+*.userprefs
+
+# Unity Play Mode test data
+*.playmode
+
+# Unity XR settings
+XR/
+
+# Unity generated meta files
+*.meta
+
+# Auto-generated lighting data
+LightmapsSnapshot/
+*.ReflectionProbe*
 
 # vitepress build output
 **/.vitepress/dist
@@ -163,3 +209,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+.venv

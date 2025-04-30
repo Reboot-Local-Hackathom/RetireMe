@@ -30,6 +30,11 @@ class sAccount(Document):
     account_fid = UUIDField(binary=False, default=uuid.uuid4, unique=True)
     # This is to make sure that if a token is re-issued, all older access tokens are rendered invalid
     token_number = IntField(default=0)
+    annual_income = FloatField(required=True)
+    cash_invested = FloatField(required=True)
+    perc_contribution = FloatField(required=True)
+    employer_contribution = FloatField(required=True)
+    target_amount = FloatField(requied=True)
 
     meta = {
         'indexes': [
