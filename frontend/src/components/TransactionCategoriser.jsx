@@ -26,7 +26,15 @@ export default function TransactionCategoriser() {
           }
         });
         const data = await res.json();
-        setTransactions(data.transactions);
+        var transaction;
+        const uncategorised = [];
+        for (let i = 0; i < data.transactions.length; i++) {
+          transaction = data.transactions[i]
+          if (transaction.category === 'Uncategorized') {
+            uncategorised.push(transaction)
+          }
+        }
+        setTransactions(uncategorised);
       } catch (error) {
         console.error('Error fetching transactions:', error);
       }
@@ -37,6 +45,19 @@ export default function TransactionCategoriser() {
 
   const handleCategorySelect = (category) => {
     const updated = [...categorised, { ...transactions[currentIndex], category }];
+    console.log(transactions[currentIndex].transaction_id);
+    console.log(category);
+    const response = fetch('http://localhost:8000/transactions/update-category', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Add this line
+      },
+      body: JSON.stringify({
+        'transaction_id': transactions[currentIndex].transaction_id,
+        'new_category': category
+      })
+    });
+    console.log(response);
     setCategorised(updated);
     setCurrentIndex(currentIndex + 1);
   };

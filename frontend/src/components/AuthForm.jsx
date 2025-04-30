@@ -66,6 +66,7 @@ export default function AuthForm() {
         },
         body: JSON.stringify(payload),
       });
+      console.log(res);
 
       if (!res.ok) {
         throw new Error('Something went wrong');
