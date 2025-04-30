@@ -18,6 +18,7 @@ class sTransaction(Document):
     reference = StringField(required=True, default=lambda: random.choice(['food', 'taxi', 'bus', 'friends']))
     payee = StringField(required=True, default=lambda: random.choice(['Rehman', 'Alex', 'Sarah', 'Jordy']))
     category = StringField(required=True, default="Uncategorized")
+    amount = FloatField(required=True, default=lambda: round(random.random() * 100, 2))
 
     meta = {
         'indexes': [
