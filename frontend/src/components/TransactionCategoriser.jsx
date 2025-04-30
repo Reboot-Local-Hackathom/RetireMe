@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function TransactionCategorizer() {
+export default function TransactionCategoriser() {
   const categories = [
     'Groceries',
     'Subscriptions',
@@ -14,7 +14,7 @@ export default function TransactionCategorizer() {
 
   const [transactions, setTransactions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [categorized, setCategorized] = useState([]);
+  const [categorised, setCategorised] = useState([]);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -36,8 +36,8 @@ export default function TransactionCategorizer() {
   }, []);
 
   const handleCategorySelect = (category) => {
-    const updated = [...categorized, { ...transactions[currentIndex], category }];
-    setCategorized(updated);
+    const updated = [...categorised, { ...transactions[currentIndex], category }];
+    setCategorised(updated);
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -52,9 +52,9 @@ export default function TransactionCategorizer() {
   if (currentIndex >= transactions.length) {
     return (
       <div className="max-w-md mx-auto mt-10 p-6 bg-gray-400 shadow-xl rounded-2xl">
-        <h2 className="text-2xl font-bold mb-4 text-center">Categorization Complete</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Categorisation Complete</h2>
         <ul className="space-y-2">
-          {categorized.map((t, i) => (
+          {categorised.map((t, i) => (
             <li key={i} className="border rounded-xl p-3">
               <p><strong>{t.payee}</strong> - {t.amount.toFixed(2)}</p>
               <p className="text-sm text-gray-500">{new Date(t.time).toLocaleDateString()} | {t.reference} | {t.category}</p>
