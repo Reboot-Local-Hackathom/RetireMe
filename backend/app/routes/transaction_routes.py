@@ -93,6 +93,8 @@ def trans_to_dict(trans):
         d["time"] = trans["time"]
         d["payee"] = trans["payee"]
         d["reference"] = trans["reference"]
+        d["amount"] = trans["amount"]
+        d["category"] = trans["category"]
         return d
     except:
         return False
