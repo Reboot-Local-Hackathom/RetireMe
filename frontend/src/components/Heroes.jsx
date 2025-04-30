@@ -1,23 +1,32 @@
+// src/components/Heroes.jsx
 import React from 'react';
-import './styles/heroes.css';
 
-const Heroes = ({ title, subtitle, imageUrl }) => {
+const Heroes = ({ title, subtitle }) => {
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center text-white text-center bg-black">
+      {/* Background video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        src="/Horse.mp4"
         autoPlay
         loop
         muted
         playsInline
       >
-        <source src="/Horse.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-20">
-        <h1 className="text-4xl md:text-6xl font-bold text-center">{title}</h1>
-        <p className="text-xl md:text-2xl mt-4 text-center">{subtitle}</p>
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+      {/* Text content */}
+      <div className="relative z-20 max-w-3xl px-4">
+        <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-wide leading-tight bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          {title}
+        </h1>
+        <p className="text-xl md:text-2xl font-light mt-6">
+          {subtitle}
+        </p>
       </div>
     </div>
   );
