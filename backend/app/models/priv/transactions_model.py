@@ -14,6 +14,7 @@ class sTransaction(Document):
     time = DateTimeField(
         default=datetime.utcnow, required=True)  # Creation timestamp
     account_fid = UUIDField(binary=False, required=True)
+    transaction_id = UUIDField(binary=False, default=uuid.uuid4, unique=True)
     # This is to make sure that if a token is re-issued, all older access tokens are rendered invalid
     reference = StringField(required=True, default=lambda: random.choice(['food', 'taxi', 'bus', 'friends']))
     payee = StringField(required=True, default=lambda: random.choice(['Rehman', 'Alex', 'Sarah', 'Jordy']))
@@ -62,3 +63,22 @@ async def find_transactions_by_account_id(account_fid: str):
         return False
 
     return trans
+
+
+async def update_transaction_by_transaction_id(transaction_id: str, new_cat: str):
+    trans = sTransaction.objects(transaction_id=transaction_id).first()
+
+    print("HERE TRANS IS THIS", trans)
+
+    if not trans:
+        return False
+    
+    try:
+        trans.category = new_cat
+        trans.save()
+
+    except Exception as e:
+        print(e)
+        return False
+
+    return True

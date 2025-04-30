@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Request
 
-from app.models.pub.account_sign_up_schema import pSignUpData
-from app.models.pub.account_sign_in_schema import pSignInData
+from app.models.pub.transaction_cat import pTransactionCat
+
 
 from app.models.priv.account_model import create_account, find_account_doc_by_email
-from app.models.priv.transactions_model import find_transactions_by_account_id, create_transaction
+from app.models.priv.transactions_model import find_transactions_by_account_id, create_transaction, update_transaction_by_transaction_id
 
 from app.helpers.login_helper import login_email_password
 from app.helpers.token_helper import issue_jwt_access_token, verify_access_token
@@ -86,6 +86,43 @@ async def customer_sign_up(request: Request):
     return({"transactions": out})
 
 
+
+    
+
+@router.post("/transactions/update-category")
+async def edit_transaction_cat(transInput: pTransactionCat, request:Request):
+    
+    try:
+        access_token = request.headers['x-access-token']
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Provide access token")
+    
+    token_result = await verify_access_token(access_token)
+
+  
+    if not token_result['status'] or not token_result['account_doc']:
+        raise HTTPException(status_code=401, detail="bad token")
+    
+    try:
+        # Don't bother checking it's their transaction
+        trans_id = transInput.transaction_id
+        new_cat = transInput.new_category
+    
+        transaction_result = await update_transaction_by_transaction_id(trans_id, new_cat)
+
+        if not transaction_result:
+            raise Exception() # Trigger except catch and 500 back
+
+
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="error updating transactions")
+    
+    return({"status": True})
+
+
+
+
 def trans_to_dict(trans):
     try:
         d = {}
@@ -95,6 +132,7 @@ def trans_to_dict(trans):
         d["reference"] = trans["reference"]
         d["amount"] = trans["amount"]
         d["category"] = trans["category"]
+        d["transaction_id"] = trans["transaction_id"]
         return d
     except:
         return False
